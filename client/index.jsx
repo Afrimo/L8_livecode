@@ -25,9 +25,9 @@ function FrontPage() {
 async function fetchJSON(url, options = {}){
     const res = await fetch(url, {
         method: options.method || "get",
-        headers: options.json ? {"conntent-type" : "application/json"} : {},
+        headers: options.json ? {"content-type" : "application/json"} : {},
         body: options.json && JSON.stringify(options.json),
-    })
+    });
 
     if (!res.ok){
         throw new Error(`Loading failed: ${res.status} -> ${res.statusText}`)
@@ -81,10 +81,13 @@ function ListMovies (){
         <div>
             <h1>Movies to come back to</h1>
             {
-                data.map( (movie) =>(
-                    <div key={movie.title}>{movie.title}</div>
-                ))
-            }
+                data.map( (movie) => (
+                  <div key={movie.title}><h1> {movie.title} -> ({movie.year}) </h1>
+                  <div>
+                      {movie.plot}
+                  </div>
+                  </div>
+                ))}
         </div>
     )
 }
@@ -97,8 +100,8 @@ function AddMovie(){
     const navigate = useNavigate()
 
     async function handleSubmit(e){
-
         e.preventDefault();
+
         await fetchJSON("/api/movies", {
             method: "post",
             json: { title, year, plot }
