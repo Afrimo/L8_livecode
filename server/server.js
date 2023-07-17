@@ -20,7 +20,6 @@ if (mongodburl){
         .then((conn) => app.use("/api/movies",
             MoviesApi(conn.db(process.env.MONGODB_DATABASE || "movies-example"))));
 }
-console.log("hei")
 
 app.use(express.static("../client/dist"));
 
@@ -34,5 +33,5 @@ app.use((req, res, next) => {
    }
 });
 
-const server = app.listen(process.env.PORT || 3004,
+const server = app.listen(process.env.PORT || 2222,
     () => {console.log(`Server started on: http://localhost:${server.address().port}`)});

@@ -50,6 +50,7 @@ function useLoader(loadingFunction){
         }
         catch (error){
             setError(error)
+            setLoading(false)
         }
         finally {
             setLoading(false)

@@ -15,21 +15,14 @@ const movies  = [
 
 export function MoviesApi(db){
     const api = express.Router();
-    console.log("hei")
 
     api.get("/", async (req, res) =>{
 
+        // remove ?
         //res.json(movies)
         const collection = db.collection("movies")
         console.log(collection)
-/*
-        const movies = await db
-            .collection("movies")
-            .find({})
-            .map(({ title, year, plot }) => {title, year,plot})
-            .toArray();
 
-        res.json(movies)*/
     })
 
     api.post("/", (req, res) => {
